@@ -32,6 +32,9 @@
       <td></td>
     </tr>
   </table>
+  <input type="text" placeholder="请输入你的用户名">
+  <input type="button">
+  <button>点我</button>
   <a href="https://www.baidu.com" target="_blank">haha</a>
   <?php
   class Site
