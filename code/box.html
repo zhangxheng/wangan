@@ -8,27 +8,38 @@
   <title>Document</title>
   <style>
     #outer {
-      width: 500px;
-      border: solid 2px red;
-
+      width: 508px;
+      height: 400px;
       background-color: aqua;
+      /*间隔*/
       margin: auto;
       margin-top: 200px;
-      padding-top: 150px;
-      padding-bottom: 150px;
-      text-align: center;
+
+
     }
 
-    #inter {
+    .inner {
+      /*边框本身*/
       border: solid 2px red;
+      width: 250px;
+      height: 100px;
+      /*外部间隔*/
+      margin: auto;
+      float: left;
+      text-align: center;
+      /*字体样式*/
+      font-size: 30px;
+      color: rgb(196, 123, 32);
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-style: oblique;
     }
   </style>
 </head>
 
 <body>
   <div id="outer">
-    <div id="inter">蜗牛学院</div>
-    <div id="inter">haha</div>
+    <div class="inner">蜗牛学院</div>
+    <div class="inner">haha</div>
   </div>
 
 </body>

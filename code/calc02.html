@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计算器</title>
+  <!--CSS样式-->
+  <style>
+    /*设置标题栏样式*/
+    #top {
+      width: 450px;
+      height: 50px;
+      margin: auto;
+      background: gray;
+      border-radius: 5px;
+    }
+
+    #top .point {
+      width: 20px;
+      height: 20px;
+
+      float: left;
+      margin-top: 15px;
+      margin-left: 10px;
+      border-radius: 50%;
+    }
+
+    #top .red {
+      background-color: red;
+    }
+
+    #top .blue {
+      background-color: blue;
+    }
+
+    #top .green {
+      background-color: green;
+    }
+
+    #calc-title {
+      font-size: 22px;
+      color: white;
+      float: right;
+      margin-right: 20px;
+      margin-top: 10px;
+    }
+
+    /*设置显示栏样式*/
+    #result {
+      border: solid 2px red;
+      width: 446px;
+      height: 50px;
+      margin: auto;
+
+    }
+
+    /*设置按键样式*/
+    #button {
+      width: 450px;
+      height: 400px;
+      background: gray;
+      margin: auto;
+
+    }
+
+    #button div {
+      width: 109px;
+      height: 80px;
+      float: left;
+      background-color: aqua;
+      border: solid 2px gray;
+      font-size: 30px;
+      text-align: center;
+      line-height: 80px;
+
+    }
+
+    /*光标*/
+    #button div:hover {
+      background-color: rgb(183, 73, 73);
+      font-size: 40px;
+    }
+  </style>
+
+  <!--JS样式-->
+  <script type="text/javascript">
+    //获取元素getElementById("calc-title"),获取属性innerHTML
+    function alertTitle() {
+      var calcTitle = document.getElementById("calc-title").innerHTML;
+      window.alert(calcTitle);
+    }
+  </script>
+
+</head>
+<!--onload元素事件-->
+
+<body onload="alertTitle()">
+  <!--标题-->
+  <div id="top">
+    <div class="point red"></div>
+    <div class="point blue"></div>
+    <div class="point green"></div>
+    <div id="calc-title">蜗牛计算器</div>
+  </div>
+  <!--结果-->
+  <div id="result"></div>
+  <!--按键-->
+  <div id="button">
+    <div>AC</div>
+    <div>+/-</div>
+    <div>%</div>
+    <div>÷</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>*</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>-</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>+</div>
+    <div>0</div>
+    <div>删除</div>
+    <div>.</div>
+    <div>=</div>
+  </div>
+
+
+</body>
+
+</html>
