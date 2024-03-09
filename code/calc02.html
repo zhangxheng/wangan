@@ -49,9 +49,12 @@
     /*设置显示栏样式*/
     #result {
       border: solid 2px red;
-      width: 446px;
-      height: 50px;
+      width: 436px;
+      height: 70px;
       margin: auto;
+      text-align: right;
+      font-size: 50px;
+      padding-right: 10px;
 
     }
 
@@ -85,17 +88,34 @@
 
   <!--JS样式-->
   <script type="text/javascript">
-    //获取元素getElementById("calc-title"),获取属性innerHTML
-    function alertTitle() {
-      var calcTitle = document.getElementById("calc-title").innerHTML;
-      window.alert(calcTitle);
+    //JS代码
+
+    function clickNumber(number) {
+      var result = document.getElementById("result");
+      result.innerHTML += number;
+    }
+    function clickOperator(operator) {
+      var result = document.getElementById("result");
+      result.innerHTML += operator;
+    }
+    function clickClear() {
+      var result = document.getElementById("result");
+      result.innerHTML = "";
+    }
+    function clickEqual() {
+      var result = document.getElementById("result");
+      result.innerHTML = eval(result.innerHTML);
+    }
+    function doBock() {
+      var result = document.getElementById("result");
+      result.innerHTML = result.innerHTML.slice(0, -1);
     }
   </script>
 
 </head>
 <!--onload元素事件-->
 
-<body onload="alertTitle()">
+<body>
   <!--标题-->
   <div id="top">
     <div class="point red"></div>
@@ -107,26 +127,26 @@
   <div id="result"></div>
   <!--按键-->
   <div id="button">
-    <div>AC</div>
+    <div onclick="clickClear()">AC</div>
     <div>+/-</div>
-    <div>%</div>
-    <div>÷</div>
-    <div>7</div>
-    <div>8</div>
-    <div>9</div>
-    <div>*</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div>
-    <div>-</div>
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>+</div>
-    <div>0</div>
-    <div>删除</div>
-    <div>.</div>
-    <div>=</div>
+    <div onclick="clickOperator('%')">%</div>
+    <div onclick="clickOperator('/')">÷</div>
+    <div onclick="clickNumber(7)">7</div>
+    <div onclick="clickNumber(8)">8</div>
+    <div onclick="clickNumber(9)">9</div>
+    <div onclick="clickOperator('*')">*</div>
+    <div onclick="clickNumber(4)">4</div>
+    <div onclick="clickNumber(5)">5</div>
+    <div onclick="clickNumber(6)">6</div>
+    <div onclick="clickOperator('-')">-</div>
+    <div onclick="clickNumber(1)">1</div>
+    <div onclick="clickNumber(2)">2</div>
+    <div onclick="clickNumber(3)">3</div>
+    <div onclick="clickOperator('+')">+</div>
+    <div onclick="clickNumber(0)">0</div>
+    <div onclick="doBock()">删除</div>
+    <div onclick="clickOperator('.')">.</div>
+    <div onclick="clickEqual()">=</div>
   </div>
 
 
