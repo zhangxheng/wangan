@@ -16,6 +16,7 @@
       border-radius: 5px;
     }
 
+
     #top .point {
       width: 20px;
       height: 20px;
@@ -90,26 +91,45 @@
   <script type="text/javascript">
     //JS代码
 
-    function clickNumber(number) {
-      var result = document.getElementById("result");
-      result.innerHTML += number;
-    }
+    //operator 运算符按钮点击事件
     function clickOperator(operator) {
       var result = document.getElementById("result");
-      result.innerHTML += operator;
+      var last = result.innerHTML.slice(-1);
+      if (last === "+" || last === "-" || last === "*" || last === "/") {
+        result.innerHTML = result.innerHTML.slice(0, -1) + operator;
+      } else {
+        result.innerHTML += operator;
+      }
+      isOperator = true;
     }
+
+    // number按钮点击事件
+    function clickNumber(number) {
+      var result = document.getElementById("result");
+      result.innerHTML += number
+      isOperator = false;
+    }
+    //clear按钮点击事件
     function clickClear() {
       var result = document.getElementById("result");
       result.innerHTML = "";
     }
+    //equal按钮点击事件
     function clickEqual() {
       var result = document.getElementById("result");
       result.innerHTML = eval(result.innerHTML);
     }
+    //back按钮点击事件
     function doBock() {
       var result = document.getElementById("result");
       result.innerHTML = result.innerHTML.slice(0, -1);
     }
+    //spot按钮点击事件
+    function clickSpot() {
+      var result = document.getElementById("result");
+      result.innerHTML += ".";
+    }
+
   </script>
 
 </head>
@@ -145,7 +165,7 @@
     <div onclick="clickOperator('+')">+</div>
     <div onclick="clickNumber(0)">0</div>
     <div onclick="doBock()">删除</div>
-    <div onclick="clickOperator('.')">.</div>
+    <div onclick="clickSpot('.')">.</div>
     <div onclick="clickEqual()">=</div>
   </div>
 
