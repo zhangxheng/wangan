@@ -53,3 +53,24 @@ $arr = array("apple", "banana", "orange");
 $str = implode(",", $arr);
 echo $str;
 // 输出：apple,banana,orange
+// 连接数据库
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDB";
+
+// 创建连接
+$conn = new mysqli($servername, $username, $password, $dbname);
+// 检测连接
+if ($conn->connect_error) {
+  die("连接失败: " . $conn->connect_error);
+}
+// 执行SQL语句
+$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+  // 输出数据
+  while ($row = $result->fetch_assoc()) {
+    echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+  }
+}
