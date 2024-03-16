@@ -6,26 +6,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>登录界面</title>
   <!--登录CSS样式-->
-  <link rel="stylesheet" href="login.css">
-  <!--引入jQuery库-->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  </script>
+    body {
+      background-color: #f2f2f2;
+    }
+
+    .login {
+      width: 300px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    .login h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+
+    .register {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .register a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+
+    .register a:hover {
+      text-decoration: underline;
+    }
+
+    .error {
+      color: red;
+      margin-bottom: 10px;
+    }
+  </style>
+
+
 </head>
+<!--登录HTML代码,包括表单,登录和注册按钮-->
+
 
 <body>
-  <!--用户登录界面，账号，密码，验证码-->
-  <div class="login-container">
-    <h1>用户登录</h1>
-    <form id="login-form" method="post">
-      <label for="username">账号:</label>
+  <div class="login">
+    <h1>登录界面</h1>
+    <form action="login.php" method="post">
+      <label for="username">用户名:</label>
       <input type="text" id="username" name="username" required>
+      <br>
       <label for="password">密码:</label>
       <input type="password" id="password" name="password" required>
-      <label for="captcha">验证码:</label>
-      <input type="text" id="captcha" name="captcha" required>
-      <img src="login.php" id="captcha-img">
+      <br>
       <input type="submit" value="登录">
+      <br>
+      <a href="register.php">注册</a>
     </form>
   </div>
 
