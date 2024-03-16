@@ -31,6 +31,10 @@
 <body>
 
   <?php
+
+
+
+
   // php访问MySQL
   $servername = "localhost";
   $username = "root";
@@ -50,11 +54,26 @@
   $username = $_POST['username'];
   $password = $_POST['password'];
 
+  session_start();
+  // 检测是否已经登录
+  if (isset($_SESSION['username'])) {
+    echo "您已经登录，欢迎 " . $_SESSION['username'] . "!";
+  } else {
+    echo "您尚未登录，请登录！";
+  }
+
   // 查询数据库
   $sql = "SELECT * FROM user where username='$username' and password='$password'";
   $result = $conn->query($sql);
-  // 登录成功，显示弹窗
-  echo "<script>alert('登录成功！');</script>";
+  // 登录成功
+  if ($result->num_rows == 1) {
+    // 分配session变量
+    session_start();
+    $_SESSION['username'] = $username;
+    $_SESSION['islogin'] = true;
+  } else {
+    echo "登录失败！";
+  }
 
   if ($result->num_rows > 0) {
     // 将所有数据一次性保存到数组中，以便输出
@@ -67,7 +86,7 @@
     <th>邮箱</th>
   </tr>
   <tr>
-    <td>" . $row["username"] . "</td>
+    <td>" . $row["username"] . " </td>
     <td><a href='calc02.html'>" . $row['password'] . "</td>
     <td>" . $row["email"] . "</td>
   </tr>
