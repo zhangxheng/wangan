@@ -6,9 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo date("Y-m-d H:i:s"); ?></title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
     table {
       border-collapse: collapse;
       width: 100%;
+      margin-top: 20px;
     }
 
     th,
@@ -31,74 +36,31 @@
 <body>
 
   <?php
-
-
-
-
-  // php访问MySQL
-  $servername = "localhost";
-  $username = "root";
-  $password = "123456";
-  $dbname = "test";
-
-  // 创建连接
-  $conn = new mysqli($servername, $username, $password, $dbname);
-
-
-  // 检测连接
-  if ($conn->connect_error) {
-    die("连接失败: " . $conn->connect_error);
-  }
+  include "common.php";
 
   // 接收表单数据
-  $username = $_POST['username'];
+  $username = ($_POST['username']);
+
   $password = $_POST['password'];
 
-  session_start();
-  // 检测是否已经登录
-  if (isset($_SESSION['username'])) {
-    echo "您已经登录，欢迎 " . $_SESSION['username'] . "!";
-  } else {
-    echo "您尚未登录，请登录！";
-  }
+  $vcode = $_POST['vcode'];
 
-  // 查询数据库
-  $sql = "SELECT * FROM user where username='$username' and password='$password'";
-  $result = $conn->query($sql);
-  // 登录成功
-  if ($result->num_rows == 1) {
-    // 分配session变量
-    session_start();
-    $_SESSION['username'] = $username;
-    $_SESSION['islogin'] = true;
-  } else {
-    echo "登录失败！";
-  }
 
-  if ($result->num_rows > 0) {
-    // 将所有数据一次性保存到数组中，以便输出
-    $row = $result->fetch_assoc();
-    // 用html中的表格输出用户信息
-    echo "<table border='1'>
-  <tr>
-    <th>用户名</th>
-    <th>密码</th>
-    <th>邮箱</th>
-  </tr>
-  <tr>
-    <td>" . $row["username"] . " </td>
-    <td><a href='calc02.html'>" . $row['password'] . "</td>
-    <td>" . $row["email"] . "</td>
-  </tr>
-</table>";
+  // 验证码验证
+  if (strtolower($vcode) != strtolower($_SESSION['code'])) {
+    echo "<p>验证码错误！</p>";
+    //清空验证码
+    // $_SESSION['vcode'] = "";
+    // 跳转到登录页面,延时跳转
+    // sleep(2);
+    header("refresh:2;url=login.html");
+    exit();
   }
 
 
-  // 释放查询结果集，关闭连接
-
-  $conn->close();
+  // 数据库查询
+  login_normal($username, $password);
   ?>
-
 </body>
 
 </html>
